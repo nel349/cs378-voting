@@ -1,0 +1,113 @@
+commit 4f9db46bcd9ca5cbb4c4cffae787cbab186be5f0
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Tue Jun 17 17:12:38 2014 -0500
+
+    Fixed #26. Fixed #27
+
+commit 2f3aec26364de7df5bba288eeeddd4e9e42980d1
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Tue Jun 17 17:07:24 2014 -0500
+
+    Log Filed added. Fixed #24 #25 #26 #27.
+
+commit e2c520b1259fc90af9a91d2e157bb2895e05e63c
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Tue Jun 17 17:03:30 2014 -0500
+
+    Documentation. Fixed #21. Fixed #22. Fixed #23.
+
+commit 9e6eb8e593500e8622506561c763ff136eb3ed2f
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Tue Jun 17 14:56:58 2014 -0500
+
+    Posted test to the test repo
+
+commit 72da3c48b5654e54f9c1fa3604ed9bef91224697
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Tue Jun 17 13:50:18 2014 -0500
+
+    Added cache. Fixed #6. Fixed #7. Fixed #8. Fixed #11
+
+commit c75ebd5cb07d43d48f21223392c1418835cf71d3
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Fri Jun 13 16:14:58 2014 -0500
+
+    Accepted by Sphere Version 1. With Cache. Fixed #1. Fixed #2. Fixed #15
+
+commit 8e19943d88ef772514b5bdd1b236e441a2854d90
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Fri Jun 13 16:06:55 2014 -0500
+
+    Solved problem
+
+commit 8a8979171854be6e5c59852968ecc8d39201645b
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Fri Jun 13 15:09:34 2014 -0500
+
+    Test Cases Done
+
+commit 7f1e731245caebc30d83f4ecbbaeb76e550f27f1
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Mon Jun 9 12:18:51 2014 -0500
+
+    First commit, Failed Test
+
+commit 6980471b9413e354a25b0952ff373a6926ae8b7a
+Author: Cristhian Escobar <cristhianescobar@users.noreply.github.com>
+Date:   Mon Jun 9 12:03:01 2014 -0500
+
+    Create SphereCollatz.c++
+
+commit 22bcbf426fc691a7e5179c3dd230e7fb18ccdc43
+Author: Cristhian Escobar <cristhianescobar@users.noreply.github.com>
+Date:   Mon Jun 9 12:02:30 2014 -0500
+
+    Create Collatz.log
+
+commit 863d7352ed0f5d46b68c4b580a074a9e929b0117
+Author: Cristhian Escobar <cristhianescobar@users.noreply.github.com>
+Date:   Mon Jun 9 12:02:11 2014 -0500
+
+    Create TestCollatz.c++
+
+commit 79c733fc780915c7a14c31f82666e7bf0c525920
+Author: Cristhian Escobar <cristhianescobar@users.noreply.github.com>
+Date:   Mon Jun 9 12:01:34 2014 -0500
+
+    Create RunCollatz.c++
+
+commit 78b0ae011729fdd04b6a302ce6f2c2bee3bb4498
+Author: Cristhian Escobar <cristhianescobar@users.noreply.github.com>
+Date:   Mon Jun 9 12:00:43 2014 -0500
+
+    Create RunCollatz.out
+
+commit c477c2caacdd267de43846ad4765090cea7434a1
+Author: Cristhian Escobar <cristhianescobar@users.noreply.github.com>
+Date:   Mon Jun 9 12:00:07 2014 -0500
+
+    Rename RunCollatz.sample.in to RunCollatz.in
+
+commit afb62f0057c376882cf1813e9e0756f947d501d4
+Author: Cristhian Escobar <cristhianescobar@users.noreply.github.com>
+Date:   Mon Jun 9 11:59:43 2014 -0500
+
+    Create RunCollatz.sample.in
+
+commit 02f3669eba4276500659920627d6f3770b66f24a
+Author: Cristhian Escobar <cristhianescobar@users.noreply.github.com>
+Date:   Mon Jun 9 11:59:11 2014 -0500
+
+    Create Collatz.h
+
+commit d76d926f839cfe630ad1f8da92fcf6848acfaaef
+Author: Cristhian Escobar <cristhianescobar@users.noreply.github.com>
+Date:   Mon Jun 9 11:58:43 2014 -0500
+
+    Create Collatz.c++
+
+commit fb27eb951a8aa5644472d6549acec5e7b40dfd6a
+Author: Cristhian Escobar <cristhianescobar@users.noreply.github.com>
+Date:   Mon Jun 9 11:48:57 2014 -0500
+
+    Initial commit
