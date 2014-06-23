@@ -1,13 +1,13 @@
 
 /*
 To compile the program:
-    % g++-4.7 -fprofile-arcs -ftest-coverage -pedantic -std=c++11 -Wall Collatz.c++ RunCollatz.c++ -o RunCollatz
+    % g++-4.7 -fprofile-arcs -ftest-coverage -pedantic -std=c++11 -Wall Voting.c++ RunVoting.c++ -o RunVoting
 
 To run the program:
-    % valgrind RunCollatz < RunCollatz.in
+    % valgrind RunVoting < RunVoting.in
 
 To obtain coverage of the run:
-	% gcov-4.7 -b Collatz.c++ RunCollatz.c++
+	% gcov-4.7 -b Voting.c++ RunVoting.c++
 
 To configure Doxygen:
     % doxygen -g
