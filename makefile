@@ -28,18 +28,21 @@ Voting.zip: makefile                                  \
            UVaVoting.c++                            \
            TestVoting.c++ TestVoting.out
 
-RunVoting: Voting.h Voting.c++ RunVoting.c++
+compile: Voting.h Voting.c++ RunVoting.c++
 	g++-4.7 -fprofile-arcs -ftest-coverage -pedantic -std=c++11 -Wall Voting.c++ RunVoting.c++ -o RunVoting
 
 RunVoting.out: RunVoting RunVoting.in
 	valgrind RunVoting < RunVoting.in > RunVoting.out
 
 TestVoting: Voting.h Voting.c++ TestVoting.c++
-	g++-4.7 -fprofile-arcs -ftest-coverage -pedantic -std=c++11 -Wall Voting.c++ TestVoting.c++ -o TestVoting -lgtest -lpthread -lgtest_main
+	g++-4.7 -fprofile-arcs -ftest-coverage -pedantic -std=c++11 -Wall Voting.c++ TestVoting.c++ -o TestVoting -lgtest -lgtest_main -lpthread
 
 TestVoting.out: TestVoting
 	valgrind TestVoting > TestVoting.out
 
 readme:
 	echo "Nothing in the read me file" > readme.txt
+
+run:
+	./RunVoting < RunVoting.in
 

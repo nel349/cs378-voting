@@ -1,5 +1,5 @@
 // ----------------------------
-// projects/collatz/Collatz.c++
+// projects/Voting/Voting.c++
 // Copyright (C) 2014
 // Glenn P. Downing
 // ----------------------------
@@ -11,15 +11,26 @@
 #include <cassert>  // assert
 #include <iostream> // endl, istream, ostream
 #include <utility>  // make_pair, pair
+#include <string>
+#include <sstream>
+#include <deque>
+#include <vector>
 
 #include "Voting.h"
 
+using namespace std;
+deque<string> canditate_names(20, "");
+int numCandidates = 0;
+
+// deque<vector> candidates;
+
+
 
 // ------------
-// collatz_read
+// Voting_read
 // ------------
 
-std::pair<int, int> collatz_read (std::istream& r) {
+std::pair<int, int> voting_read (std::istream& r) {
 	int i;
     r >> i;
     if (!r)
@@ -29,32 +40,86 @@ std::pair<int, int> collatz_read (std::istream& r) {
     return std::make_pair(i, j);}
 
 // ------------
-// collatz_eval
+// Voting_eval
 // ------------
-int volting_eval (int i, int j) {
+int voting_eval (int i, int j) {
     return 0;
 }
 
 
 // -------------
-// collatz_print
+// Voting_print
 // -------------
 
 void voting_print (std::ostream& w, int i, int j, int v) {
     w << i << " " << j << " " << v << std::endl;}
 
 // -------------
-// collatz_solve
+// Voting_solve
 // -------------
 
 void voting_solve (std::istream& r, std::ostream& w) {
-    // while (true) {
-    // 	const std::pair<int, int> p = collatz_read(r);
-    // 	if (p == std::make_pair(0, 0))
-    // 		return;
-    //     const int v = collatz_eval(p.first, p.second);
-    //     collatz_print(w, p.first, p.second, v);
-    // }
+    
+    string temp = "";
+
+    
+
+    int numTestCases = 0;
+    getline(r, temp);
+
+   
+
+    stringstream(temp) >> numTestCases;
+    // temp >> numTestCases;
+    // r >> numTestCases;
+    cout << "Number Of Test: " << numTestCases << endl; 
+    
+    int line;
+    getline(r, temp);
+
+    while(numTestCases > 0){
+
+
+
+        getline(r, temp);
+        stringstream(temp) >> numCandidates;
+        cout << "Number Of candidates: " << numCandidates << endl; 
+
+
+        do{
+            if(!r)
+                return;
+            
+
+            getline(r, temp);
+
+            // cout << temp << endl;
+
+            if(numCandidates > 0){
+               canditate_names.push_back(temp);     
+            }
+            --numCandidates;
+        }while(!temp.empty() );
+
+        print_candidates();
+        reset();
+        numTestCases--;
+    }
 
 }
         
+void print_candidates(){
+
+    for(std::string & x: canditate_names){
+        if(x != "")
+            cout << x << endl;   
+    }
+}
+
+void reset(){
+    canditate_names.clear();
+    numCandidates = 0;
+
+}
+
+

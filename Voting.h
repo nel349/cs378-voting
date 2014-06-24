@@ -1,5 +1,5 @@
 // --------------------------
-// projects/collatz/Collatz.h
+// projects/Voting/Voting.h
 // Copyright (C) 2014
 // Glenn P. Downing
 // --------------------------
@@ -15,7 +15,7 @@
 #include <utility>  // pair
 
 // ------------
-// collatz_read
+// Voting_read
 // ------------
 
 /**
@@ -23,10 +23,10 @@
  * @param  r a  std::istream
  * @return a pair of the two ints, otherwise a pair of zeros
  */
-// std::pair<int, int> collatz_read (std::istream&);
+// std::pair<int, int> Voting_read (std::istream&);
 
 // ------------
-// collatz_eval
+// Voting_eval
 // ------------
 
 /**
@@ -61,5 +61,8 @@ void voting_print (std::ostream&, int, int, int);
  * @param w a std::ostream
  */
 void voting_solve (std::istream&, std::ostream&);
+
+void print_candidates();
+void reset();
 
 #endif // Voting_h
