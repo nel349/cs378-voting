@@ -19,10 +19,10 @@
 
 using namespace std;
 deque<string> canditate_names(20, "");
+deque<Vote> election_votes;
+deque<int> election_count(20,0);
+
 int numCandidates = 0;
-
-// deque<vector> candidates;
-
 
 
 // ------------
@@ -53,23 +53,21 @@ void voting_read (std::istream& r) {
 	
     bool endTestCase = false;
 
-
-
     while( r && !endTestCase){
         
         getline(r, ballot);
+
         if(!ballot.empty()){
-
-            cout << ballot << endl;
+            // cout << ballot << endl;
             Vote v (ballot);
-      
+            election_votes.push_back(v);
+            election_count[(v.votes[0]) - 1] += 1;
         }
-        else{
-            endTestCase = true;
 
-           
-        }
+        else{
+            endTestCase = true;}
     }
+    print_votes();
 
 
 }
@@ -103,11 +101,13 @@ void voting_solve (std::istream& r, std::ostream& w) {
     getline(r, line); 
 
 
-    while(testNum <= numElections)
-    { 
+    while(testNum <= numElections){ 
         cout << "*******************Starting new Test " << testNum << endl;     
-        canditate_names.clear();
+        reset();
         voting_read(r); 
+        //
+        print_vote_count();
+        // 
         voting_eval();
         cout << "\n";
         testNum++;
@@ -126,12 +126,15 @@ void print_candidates(){
 
 void reset(){
     canditate_names.clear();
+    election_votes.clear();
+    election_count.clear();
     numCandidates = 0;
 
 }
 
 Vote::Vote(std::string ballot){
 
+    votes.clear();
     stringstream lineVotes;
     lineVotes << ballot;
     int n;
@@ -142,50 +145,27 @@ Vote::Vote(std::string ballot){
             votes.push_back(n);
         }
     }
-
 }
-// string temp = "";
 
-    
-
-    // int numTestCases = 0;
-    // getline(r, temp);
-
-   
-
-    // stringstream(temp) >> numTestCases;
-    // // temp >> numTestCases;
-    // // r >> numTestCases;
-    // cout << "Number Of Test: " << numTestCases << endl; 
-    
-    // int line;
-    // getline(r, temp);
-
-    // while(numTestCases > 0){
+void Vote::printVote(){
+    for(int i = 0; i < (int) votes.size(); ++i){
+        cout << votes[i] << " ";
+    }
+    cout << endl;
+}
 
 
+void print_votes(){
+    for(int i = 0; i < (int) election_votes.size(); ++i){
+        election_votes[i].printVote();
+    }
+    cout << endl;
+}
 
-    //     getline(r, temp);
-    //     stringstream(temp) >> numCandidates;
-    //     cout << "Number Of candidates: " << numCandidates << endl; 
+void print_vote_count(){
+    for(int i = 0; i < numCandidates; ++i){
+        cout << canditate_names[i] << " : " << election_count[i] << endl; 
+    }
+    cout << endl;
+}
 
-
-    //     do{
-    //         if(!r)
-    //             return;
-            
-
-    //         getline(r, temp);
-
-    //         // cout << temp << endl;
-
-    //         if(numCandidates > 0){
-    //            canditate_names.push_back(temp);     
-    //         }
-    //         --numCandidates;
-    //     }while(!temp.empty() );
-
-    //     print_candidates();
-    //     reset();
-    //     numTestCases--;
-    // }

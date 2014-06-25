@@ -70,9 +70,14 @@ void print_candidates();
 
 void reset();
 
+void print_votes();
+
+
+void print_vote_count();
+
 class Vote {
 
-private:
+public:
 	deque<int> votes;
 public:
 	Vote(string);
