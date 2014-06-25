@@ -12,7 +12,11 @@
 // --------
 
 #include <iostream> // istream, ostream
-#include <utility>  // pair
+#include <utility>  
+#include <deque>
+#include <string>
+
+using namespace std;
 
 // ------------
 // Voting_read
@@ -23,7 +27,7 @@
  * @param  r a  std::istream
  * @return a pair of the two ints, otherwise a pair of zeros
  */
-// std::pair<int, int> Voting_read (std::istream&);
+void voting_read (std::istream& r);
 
 // ------------
 // Voting_eval
@@ -34,7 +38,7 @@
  * @param j the end       of the range, inclusive
  * @return the max cycle length in the range [i, j]
  */
-int voting_eval (int, int);
+void voting_eval ();
 
 // -------------
 // voting_print
@@ -63,6 +67,25 @@ void voting_print (std::ostream&, int, int, int);
 void voting_solve (std::istream&, std::ostream&);
 
 void print_candidates();
+
 void reset();
+
+class Vote {
+
+private:
+	deque<int> votes;
+public:
+	Vote(string);
+	int popVote();
+	int getSize();
+	void printVote();
+};
+
+class Candidate{
+
+};
+
+
+
 
 #endif // Voting_h

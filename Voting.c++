@@ -1,7 +1,6 @@
 // ----------------------------
 // projects/Voting/Voting.c++
 // Copyright (C) 2014
-// Glenn P. Downing
 // ----------------------------
 
 // --------
@@ -29,21 +28,57 @@ int numCandidates = 0;
 // ------------
 // Voting_read
 // ------------
+void voting_read (std::istream& r) {
+	
+	r >> numCandidates;
+	cout << "Numero de Candidatos: " << numCandidates << endl;
 
-std::pair<int, int> voting_read (std::istream& r) {
-	int i;
-    r >> i;
-    if (!r)
-        return std::make_pair(0, 0);
-	int j;
-    r >> j;
-    return std::make_pair(i, j);}
+	string names = "";
+	getline(r, names);
+
+
+	if(!r)
+		return;
+
+	// Collect Candidate Names
+	for(int i = 0; i < numCandidates; ++i){
+		getline(r, names);
+		canditate_names.push_back(names);
+		// cout << names << endl;
+	}
+	print_candidates();
+
+	string ballot = "";
+	getline(r, ballot);
+	
+    bool endTestCase = false;
+
+
+
+    while( r && !endTestCase){
+        
+        getline(r, ballot);
+        if(!ballot.empty()){
+
+            cout << ballot << endl;
+            Vote v (ballot);
+      
+        }
+        else{
+            endTestCase = true;
+
+           
+        }
+    }
+
+
+}
 
 // ------------
 // Voting_eval
 // ------------
-int voting_eval (int i, int j) {
-    return 0;
+void voting_eval () {
+    
 }
 
 
@@ -60,51 +95,24 @@ void voting_print (std::ostream& w, int i, int j, int v) {
 
 void voting_solve (std::istream& r, std::ostream& w) {
     
-    string temp = "";
+	int testNum = 1;
+    int numElections = 0;
 
-    
-
-    int numTestCases = 0;
-    getline(r, temp);
-
-   
-
-    stringstream(temp) >> numTestCases;
-    // temp >> numTestCases;
-    // r >> numTestCases;
-    cout << "Number Of Test: " << numTestCases << endl; 
-    
-    int line;
-    getline(r, temp);
-
-    while(numTestCases > 0){
+    r >>  numElections;
+    string line = "";
+    getline(r, line); 
 
 
-
-        getline(r, temp);
-        stringstream(temp) >> numCandidates;
-        cout << "Number Of candidates: " << numCandidates << endl; 
-
-
-        do{
-            if(!r)
-                return;
-            
-
-            getline(r, temp);
-
-            // cout << temp << endl;
-
-            if(numCandidates > 0){
-               canditate_names.push_back(temp);     
-            }
-            --numCandidates;
-        }while(!temp.empty() );
-
-        print_candidates();
-        reset();
-        numTestCases--;
+    while(testNum <= numElections)
+    { 
+        cout << "*******************Starting new Test " << testNum << endl;     
+        canditate_names.clear();
+        voting_read(r); 
+        voting_eval();
+        cout << "\n";
+        testNum++;
     }
+    
 
 }
         
@@ -122,4 +130,62 @@ void reset(){
 
 }
 
+Vote::Vote(std::string ballot){
 
+    stringstream lineVotes;
+    lineVotes << ballot;
+    int n;
+    for(int i = 0; i < numCandidates; ++i){
+        lineVotes >> n;
+        // cout << n << endl;
+        if(n != 0){
+            votes.push_back(n);
+        }
+    }
+
+}
+// string temp = "";
+
+    
+
+    // int numTestCases = 0;
+    // getline(r, temp);
+
+   
+
+    // stringstream(temp) >> numTestCases;
+    // // temp >> numTestCases;
+    // // r >> numTestCases;
+    // cout << "Number Of Test: " << numTestCases << endl; 
+    
+    // int line;
+    // getline(r, temp);
+
+    // while(numTestCases > 0){
+
+
+
+    //     getline(r, temp);
+    //     stringstream(temp) >> numCandidates;
+    //     cout << "Number Of candidates: " << numCandidates << endl; 
+
+
+    //     do{
+    //         if(!r)
+    //             return;
+            
+
+    //         getline(r, temp);
+
+    //         // cout << temp << endl;
+
+    //         if(numCandidates > 0){
+    //            canditate_names.push_back(temp);     
+    //         }
+    //         --numCandidates;
+    //     }while(!temp.empty() );
+
+    //     print_candidates();
+    //     reset();
+    //     numTestCases--;
+    // }
