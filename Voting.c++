@@ -33,6 +33,7 @@ void voting_read (std::istream& r) {
 	r >> numCandidates;
 	cout << "Numero de Candidatos: " << numCandidates << endl;
 
+    
 	string names = "";
 	getline(r, names);
 
@@ -59,16 +60,19 @@ void voting_read (std::istream& r) {
 
         if(!ballot.empty()){
             // cout << ballot << endl;
+            
             Vote v (ballot);
             election_votes.push_back(v);
+            // cout << "before: " <<election_count[(v.votes[0]) - 1]; 
             election_count[(v.votes[0]) - 1] += 1;
+            // cout << " after: " <<election_count[(v.votes[0]) - 1] << endl; 
+            
         }
 
         else{
             endTestCase = true;}
     }
     print_votes();
-
 
 }
 
@@ -111,6 +115,9 @@ void voting_solve (std::istream& r, std::ostream& w) {
         voting_eval();
         cout << "\n";
         testNum++;
+
+        cout << "election_count size() : " << (int) election_count.size() << endl;
+  
     }
     
 
@@ -127,7 +134,10 @@ void print_candidates(){
 void reset(){
     canditate_names.clear();
     election_votes.clear();
-    election_count.clear();
+    
+    for(int i = 0; i < (int) election_count.size(); ++i)
+        election_count[i]  = 0;
+
     numCandidates = 0;
 
 }
