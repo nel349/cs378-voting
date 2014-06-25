@@ -18,62 +18,56 @@
 #include "Voting.h"
 
 using namespace std;
-deque<string> canditate_names(20, "");
-deque<Vote> election_votes;
-deque<int> election_count(20,0);
+
+deque<Candidate> candidatos;
 
 int numCandidates = 0;
 
+deque<string> read_candidates(std::istream& r){
+    deque<string> listCandidates;
+    numCandidates = 0;
+    r >> numCandidates;
+    // cout << "Numero de Candidatos: " << candidateCount << endl;
 
-// ------------
-// Voting_read
-// ------------
-void voting_read (std::istream& r) {
-	
-	r >> numCandidates;
-	cout << "Numero de Candidatos: " << numCandidates << endl;
+    string name = "";
+    getline(r, name);
 
-    
-	string names = "";
-	getline(r, names);
+    if(!r)
+        return listCandidates;
 
+    // Collect Candidate Names
+    for(int i = 0; i < numCandidates; ++i){
+        getline(r, name);
+        listCandidates.push_back(name);
+        // cout << names << endl;
+    }
 
-	if(!r)
-		return;
+    return listCandidates;
+}
 
-	// Collect Candidate Names
-	for(int i = 0; i < numCandidates; ++i){
-		getline(r, names);
-		canditate_names.push_back(names);
-		// cout << names << endl;
-	}
-	print_candidates();
+deque<Vote> read_votes(std::istream& r){
+    deque<Vote> listVotes;
 
-	string ballot = "";
-	getline(r, ballot);
-	
+    // read ballots
+    string ballot = "";
+    // getline(r, ballot);
     bool endTestCase = false;
 
     while( r && !endTestCase){
         
         getline(r, ballot);
 
-        if(!ballot.empty()){
+        if(!ballot.empty() && r){
             // cout << ballot << endl;
-            
             Vote v (ballot);
-            election_votes.push_back(v);
-            // cout << "before: " <<election_count[(v.votes[0]) - 1]; 
-            election_count[(v.votes[0]) - 1] += 1;
-            // cout << " after: " <<election_count[(v.votes[0]) - 1] << endl; 
-            
+            listVotes.push_back(v);
         }
-
         else{
             endTestCase = true;}
     }
-    print_votes();
 
+    cout << "Number of ballot : " << (int) listVotes.size() << endl;
+    return listVotes;
 }
 
 // ------------
@@ -82,7 +76,6 @@ void voting_read (std::istream& r) {
 void voting_eval () {
     
 }
-
 
 // -------------
 // Voting_print
@@ -102,80 +95,103 @@ void voting_solve (std::istream& r, std::ostream& w) {
 
     r >>  numElections;
     string line = "";
-    getline(r, line); 
+    // getline(r, line); 
 
 
     while(testNum <= numElections){ 
         cout << "*******************Starting new Test " << testNum << endl;     
-        reset();
-        voting_read(r); 
-        //
-        print_vote_count();
-        // 
-        voting_eval();
+        string endVotes = "";
+        deque<string> candidates = read_candidates(r);
+        Election election(candidates);
+        
+        election.printCandidates();
+        
+        deque<Vote> ballots = read_votes(r);
+
+        election.addBallots(ballots);
+
+        
         cout << "\n";
+        election.state();
+
+
+        
+        // print_vote_count();
+        // 
+        // voting_eval();
         testNum++;
 
-        cout << "election_count size() : " << (int) election_count.size() << endl;
+        // cout << "election_count size() : " << (int) election_count.size() << endl;
   
     }
-    
-
 }
         
-void print_candidates(){
 
-    for(std::string & x: canditate_names){
-        if(x != "")
-            cout << x << endl;   
-    }
-}
-
-void reset(){
-    canditate_names.clear();
-    election_votes.clear();
-    
-    for(int i = 0; i < (int) election_count.size(); ++i)
-        election_count[i]  = 0;
-
-    numCandidates = 0;
-
-}
 
 Vote::Vote(std::string ballot){
 
-    votes.clear();
+    // votes.clear();
     stringstream lineVotes;
     lineVotes << ballot;
     int n;
     for(int i = 0; i < numCandidates; ++i){
         lineVotes >> n;
         // cout << n << endl;
-        if(n != 0){
-            votes.push_back(n);
-        }
+        if(n != 0)
+            votes.push_back(n);  
     }
 }
 
 void Vote::printVote(){
-    for(int i = 0; i < (int) votes.size(); ++i){
-        cout << votes[i] << " ";
-    }
+    for(int i = 0; i < (int) votes.size(); ++i)
+        cout << votes[i] << " ";    
     cout << endl;
 }
 
-
-void print_votes(){
-    for(int i = 0; i < (int) election_votes.size(); ++i){
-        election_votes[i].printVote();
-    }
-    cout << endl;
+int Vote::removeVote(){
+    int v = votes.front();
+    votes.pop_front();
+    return v;
 }
 
-void print_vote_count(){
+
+Candidate::Candidate(string n){
+    name = n;
+}
+
+void Candidate::addVote(Vote v){
+    ballots.push_back(v);
+}
+
+int Candidate::getNumVotes(){
+    return (int) ballots.size();
+ }
+
+Election::Election(deque<string> names){
+    numCandidates = (int) names.size();
     for(int i = 0; i < numCandidates; ++i){
-        cout << canditate_names[i] << " : " << election_count[i] << endl; 
+        Candidate c(names[i]);
+        candidates.push_back(c);
     }
-    cout << endl;
+}
+void Election::printCandidates(){
+    for(int i = 0; i < numCandidates; ++i)
+        cout << candidates[i].name << endl;
+
 }
 
+void Election::addBallots(deque<Vote> list){
+    for(int i = 0; i < (int) list.size(); ++i){
+        Vote ballot = list[i];
+        ballot.printVote();
+        int canName = ballot.removeVote() - 1;
+        // cout << "Candidate : " << canName + 1<< endl;
+         candidates[canName].addVote(ballot);
+    }
+}
+
+void Election::state(){
+    for(int i = 0; i < (int) candidates.size(); ++i)
+        cout << candidates[i].name << " : " << candidates[i].getNumVotes() << endl;
+    
+}

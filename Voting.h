@@ -18,16 +18,7 @@
 
 using namespace std;
 
-// ------------
-// Voting_read
-// ------------
 
-/**
- * read two ints
- * @param  r a  std::istream
- * @return a pair of the two ints, otherwise a pair of zeros
- */
-void voting_read (std::istream& r);
 
 // ------------
 // Voting_eval
@@ -40,57 +31,45 @@ void voting_read (std::istream& r);
  */
 void voting_eval ();
 
-// -------------
-// voting_print
-// -------------
-
-/**
- * print three ints
- * @param w a std::ostream
- * @param i the beginning of the range, inclusive
- * @param j the end       of the range, inclusive
- * @param v the max cycle length
- */
-void voting_print (std::ostream&, int, int, int);
-
-
-
-// -------------
-// voting_solve
-// -------------
-
-/**
- * read, eval, print loop
- * @param r a std::istream
- * @param w a std::ostream
- */
 void voting_solve (std::istream&, std::ostream&);
 
-void print_candidates();
-
-void reset();
-
-void print_votes();
-
-
-void print_vote_count();
 
 class Vote {
 
-public:
-	deque<int> votes;
-public:
-	Vote(string);
-	int popVote();
-	int getSize();
-	void printVote();
-};
+	public:
+		deque<int> votes;
+		Vote(string);
+		int removeVote();
+		int getSize();
+		void printVote();};
 
 class Candidate{
 
+	public:	
+		deque<Vote> ballots;
+		string name;
+		int numVotes;
+		Candidate(string);
+		int getNumVotes();
+		void addVote(Vote);
+		// Vote removeVote();
+
 };
 
+class Election{
+	public:
+		int numCandidates;
+		deque<Candidate> candidates;
+		Election(deque<string>);
+		void printCandidates();
+		void addBallots(deque<Vote>);
+		void state();
 
+};
+
+deque<Vote> read_votes(std::istream&);
+
+deque<string> read_candidates(std::istream&);
 
 
 #endif // Voting_h
