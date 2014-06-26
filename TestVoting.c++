@@ -126,16 +126,26 @@ TEST(Voting,  voting_print_1) {
 // ----
 // 
 
-TEST(Voting,  voting_solve) {
+TEST(Voting,  voting_solve_1) {
     std::istringstream r("1\n\n3\nJohn Doe\nJane Smith\nSirhan Sirhan\n1 2 3\n2 1 3\n2 3 1\n1 2 3\n3 1 2\n");
     std::ostringstream w;
-    // cout << r.str();
+    voting_solve(r, w);
+    ASSERT_EQ( "John Doe\n", w.str());
+}
+TEST(Voting,  voting_solve_2) {
+    std::istringstream r("1\n\n1\nalpha\n1\n");
+    std::ostringstream w;
     voting_solve(r, w);
     // cout << w.str();
-    ASSERT_EQ( "John Doe\n", w.str());
-    // ASSERT_EQ(-1, p.second);
+    ASSERT_EQ( "alpha\n", w.str());
 }
-
+TEST(Voting,  voting_solve_3) {
+    std::istringstream r("1\n\n3\nA\nB\nC\n1 2 3\n1 2 3\n1 2 3\n");
+    std::ostringstream w;
+    voting_solve(r, w);
+    // cout << w.str();
+    ASSERT_EQ( "A\n", w.str());
+}
 
 
 //****************************************
@@ -146,8 +156,12 @@ TEST(Voting,  voting_solve) {
 // Vote::getSize
 // ----
 // 
-TEST(Voting, getSize){
+TEST(Voting, getSize_1){
+    // Vote d("1 2");
 
+    // d.printVote();
+
+    // assert(d.getSize() == 2);
 }
 
 // ----
@@ -185,8 +199,25 @@ TEST(Voting, getFrontElement){
 // Candidate::addVote
 // ----
 // 
-TEST(Voting, addVote){
-    
+TEST(Voting, addVote_1){
+    Candidate a("John");
+    Vote v("1 2 3");
+    a.addVote(v);
+    a.ballots[0];
+}
+TEST(Voting, addVote_2){
+    Candidate a("Tim");
+    Vote v("3 2 3");
+    a.addVote(v);
+    // string actual;
+    a.ballots[0].printVote();
+    // ASSERT_EQ(a.ballots[0], 3);
+}
+TEST(Voting, addVote_3){
+    Candidate a("Mark");
+    Vote v("5656 256 3");
+    a.addVote(v);
+    a.ballots[0];
 }
 
 // ----
