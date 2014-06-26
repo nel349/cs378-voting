@@ -32,6 +32,8 @@ using namespace std;
 
 void voting_solve (std::istream&, std::ostream&);
 
+void voting_print (std::ostream&, bool);
+
 
 class Vote {
 
