@@ -382,9 +382,6 @@ void Election::runElection(std::ostream& w){
         for(int i = 0; i < (int) lossers.size(); ++i)
                 distributeBallots(candidates[lossers[i]].ballots);
 
-        // cout << "After distribution: " << endl;
-        // state();
-
         maxVotesIndex = mostVotesIndex();
         isNaturalWinner = (candidates[maxVotesIndex].getNumVotes() / (double) totalVotes)  > 0.5;
         tie = isTie();
