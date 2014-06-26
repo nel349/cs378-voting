@@ -89,11 +89,15 @@ TEST(Voting,  read_candidates_3) {
 
 TEST(Voting,  read_votes) {
     std::istringstream r("1 2 3\n4 5 6\n7 8 9\n");
-    cout << r.str();
+    // cout << r.str();
     Vote expected[] ={Vote("1 2 3"), Vote("4 5 6"), Vote("7 8 9")};
-    // deque<Vote> p = read_votes(r);
-    // deque<Vote> q ;
-    // q.assign(expected, expected + 3);
+    deque<Vote> p = read_votes(r);
+    deque<Vote> q ;
+    q.assign(expected, expected+1);
+    Vote x = p.front();
+    // for( int i = 0 ; i< 3; ++i){
+    //     x.printVote();
+    // }
     // assert( p == q);   
 }
 
@@ -102,12 +106,20 @@ TEST(Voting,  read_votes) {
 // ----
 // 
 
-TEST(Voting,  voting_print) {
-    // std::istringstream r("100 -1\n");
-    // const std::pair<int, int> p = Voting_read(r);
-    // ASSERT_EQ( 100, p.first);
-    // ASSERT_EQ(-1, p.second);
+TEST(Voting,  voting_print_1) {
+    // std::ostringstream w;
+    // voting_print(w, 1, 10, 20);
+    // ASSERT_EQ("1 10 20\n", w.str());
 }
+// TEST(Collatz, voting_print_2) {
+//     std::ostringstream w;
+//     voting_print(w, 33, 103, 203);
+//     ASSERT_EQ("33 103 203\n", w.str());}
+
+// TEST(Collatz, voting_print_3) {
+//     std::ostringstream w;
+//     voting_print(w, 78, 410, 420);
+//     ASSERT_EQ("78 410 420\n", w.str());}
 
 // ----
 // voting_solve
