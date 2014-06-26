@@ -89,35 +89,21 @@ void voting_solve (std::istream& r, std::ostream& w) {
 
     r >>  numElections;
     string line = "";
-    // getline(r, line); 
-
-
+    
     while(testNum <= numElections){ 
-        // cout << "*******************Starting new Test " << testNum << endl;     
+        
         string endVotes = "";
         deque<string> candidates = read_candidates(r);
         Election election(candidates);
         
-        // election.printCandidates();
-        
         deque<Vote> ballots = read_votes(r);
 
         election.addBallots(ballots);
-
-        
-        
-
-
         election.runElection(w);
-        // print_vote_count();
-        // 
-        // voting_eval();
+
         if(testNum + 1 == numElections)
             w << "\n";
         testNum++;
-
-        // cout << "election_count size() : " << (int) election_count.size() << endl;
-  
     }
 
     voting_print(w);
@@ -127,13 +113,11 @@ void voting_solve (std::istream& r, std::ostream& w) {
 
 Vote::Vote(std::string ballot){
 
-    // votes.clear();
     stringstream lineVotes;
     lineVotes << ballot;
     int n;
     for(int i = 0; i < numCandidates; ++i){
         lineVotes >> n;
-        // cout << n << endl;
         if(n != 0)
             votes.push_back(n);  
     }
@@ -200,18 +184,15 @@ void Election::addBallots(deque<Vote> list){
     for(int i = 0; i < totalVotes; ++i){
         Vote ballot = list[i];
         int canName = ballot.removeVote() - 1;
-        // cout << "Candidate : " << canName + 1<< endl;
-         candidates[canName].addVote(ballot);
-         // ballot.printVote();
-
+        candidates[canName].addVote(ballot);
     }
 }
 
 void Election::state(){
     for(int i = 0; i < (int) candidates.size(); ++i)
         cout << candidates[i].name << " : " << candidates[i].getNumVotes() << endl;
-    
 }
+
 bool Election::isTie(){
 
     int numVotes = -1;
@@ -240,13 +221,11 @@ int Election::mostVotesIndex(){
     int maxIndex = -1;
     int maxVotes = -1;
 
-
     for(int i = 0  ; (i < numCandidates); ++i)
         if(candidates[i].valid && maxVotes < candidates[i].getNumVotes()){
             maxIndex = i;
             maxVotes = candidates[i].getNumVotes();
-        }
-            
+        }            
     return maxIndex;
 }
 
@@ -258,33 +237,25 @@ int Election::leastVotes(){
         if(candidates[i].valid && leastVotes > candidates[i].getNumVotes()){
             leastVotes = candidates[i].getNumVotes();
         }
-
     return leastVotes;
 }
 
 bool Election::distributeBallots(deque<Vote> list){
     bool distributed = false;
 
-    // cout << (int)list.size() << endl;
     for(int i = 0; i < (int) list.size(); ++i){
         Vote v  = list.front();
         list.pop_front();
-        // cout << "vote to distributed: ";
-        // v.printVote();
-
+    
         bool donated = false;
         while(!donated && v.getSize() != 0){
-            // cout << "NEver ending loop>>>>>>>>" << endl;
             int nextBestChice = v.removeVote() - 1;
             if(candidates[nextBestChice].valid){
                 candidates[nextBestChice].addVote(v);
                 donated = true;
             }
         }
-        // state();
-        // cout << endl;
     }
-
 
     return distributed;
 }
@@ -295,19 +266,13 @@ void Election::runElection(std::ostream& w){
 
     bool isNaturalWinner = (candidates[winner].getNumVotes() / (double) totalVotes)  > 0.5;
 
-    // cout <<"isNaturalWinner: " <<isNaturalWinner << endl;
-    // cout <<"Candidate with mostVotes: " << winner << endl;
     if(isNaturalWinner){
         w << candidates[winner].name << endl;
         return;
     }
     
-    // cout << "Running election..." << endl;
     while(!isNaturalWinner){
-        // cout << "Checking for winner step: " << endl;
         int l = leastVotes();
-        // state();
-
         deque<int> lossers;
         // distribute votes
         for(int i = 0; i < numCandidates; ++i){

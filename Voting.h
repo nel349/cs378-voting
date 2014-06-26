@@ -29,7 +29,6 @@ using namespace std;
  * @param j the end       of the range, inclusive
  * @return the max cycle length in the range [i, j]
  */
-void voting_eval ();
 
 void voting_solve (std::istream&, std::ostream&);
 
