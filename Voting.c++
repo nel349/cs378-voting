@@ -76,8 +76,7 @@ deque<Vote> read_votes(std::istream& r){
 // -------------
 
 void voting_print (std::ostream& w, bool end) {
-    if(!end)
-        w  << endl;
+    
 }
 
 // -------------
@@ -105,10 +104,13 @@ void voting_solve (std::istream& r, std::ostream& w) {
         election.addBallots(ballots);
         election.runElection(w);
 
-        if(testNum + 1 == numElections)
+        if(testNum == numElections)
             end = true;
+        
+        if(!end)
+            w  << endl;
+        
         testNum++;
-        // voting_print(w, end);
     }
 
 }

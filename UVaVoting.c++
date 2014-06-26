@@ -72,11 +72,6 @@ class Election{
 
 };
 
-deque<Vote> read_votes(std::istream&);
-
-deque<string> read_candidates(std::istream&);
-
-
 deque<Candidate> candidatos;
 
 int numCandidates = 0;
@@ -134,8 +129,7 @@ deque<Vote> read_votes(std::istream& r){
 // -------------
 
 void voting_print (std::ostream& w, bool end) {
-    if(!end)
-        w  << endl;
+    
 }
 
 // -------------
@@ -163,13 +157,17 @@ void voting_solve (std::istream& r, std::ostream& w) {
         election.addBallots(ballots);
         election.runElection(w);
 
-        if(testNum + 1 == numElections)
+        if(testNum == numElections)
             end = true;
+        
+        if(!end)
+            w  << endl;
+        
         testNum++;
-        voting_print(w, end);
     }
 
 }
+  
         
 
 
@@ -262,19 +260,22 @@ bool Election::isTie(){
     bool isTie = true;
     int i = 0;
     
+    bool ff = false;
     // Find first valid candidate
-    for( ; i < numCandidates; ++i)
+    for( ; i < numCandidates && !ff; ++i){
         if(candidates[i].valid ){
             numVotes = candidates[i].getNumVotes();
-            break;
+            ff= true;
         }
-
+    }
+    // state();
     // Find if all candidates tie
     for( ; (i < numCandidates) && isTie; ++i)
         if(candidates[i].valid && numVotes != candidates[i].getNumVotes()){
             isTie = false;
         }
             
+    // cout << "Is tie: " << isTie << endl;
     return isTie;
 }
 
@@ -339,11 +340,21 @@ bool Election::distributeBallots(deque<Vote> list){
 void Election::runElection(std::ostream& w){
     int maxVotesIndex = mostVotesIndex();
     bool tie = isTie();
+    int winnerVotes = candidates[maxVotesIndex].getNumVotes();
 
-    bool isNaturalWinner = (candidates[maxVotesIndex].getNumVotes() / (double) totalVotes)  >= 0.5;
+    bool isNaturalWinner = (candidates[maxVotesIndex].getNumVotes() / (double) totalVotes)  > 0.5;
 
     if(isNaturalWinner){
         w << candidates[maxVotesIndex].name << endl;
+        return;
+    }
+
+    // cout << "TIE?  " << tie<< endl; 
+    if(tie){
+        for(int i = 0; i < numCandidates; ++i){
+            if(candidates[i].valid && winnerVotes == candidates[i].getNumVotes())
+                w << candidates[i].name << endl;
+        }
         return;
     }
    
@@ -378,7 +389,7 @@ void Election::runElection(std::ostream& w){
         isNaturalWinner = (candidates[maxVotesIndex].getNumVotes() / (double) totalVotes)  > 0.5;
         tie = isTie();
 
-        int winnerVotes = candidates[maxVotesIndex].getNumVotes();
+        winnerVotes = candidates[maxVotesIndex].getNumVotes();
 
         if(isNaturalWinner){
             w << candidates[maxVotesIndex].name << endl;
@@ -394,6 +405,8 @@ void Election::runElection(std::ostream& w){
     }    
 
 }
+
+
 
 int main () {
     using namespace std;
