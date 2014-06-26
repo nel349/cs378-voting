@@ -9,7 +9,7 @@ clean:
 	rm -f TestVoting
 	rm -f TestVoting.out
 
-doc: Voting.c++
+doc: Voting.h
 	doxygen Doxyfile
 
 Voting.log:
