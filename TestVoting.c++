@@ -127,9 +127,12 @@ TEST(Voting,  voting_print_1) {
 // 
 
 TEST(Voting,  voting_solve) {
-    // std::istringstream r("100 -1\n");
-    // const std::pair<int, int> p = Voting_read(r);
-    // ASSERT_EQ( 100, p.first);
+    std::istringstream r("1\n\n3\nJohn Doe\nJane Smith\nSirhan Sirhan\n1 2 3\n2 1 3\n2 3 1\n1 2 3\n3 1 2\n");
+    std::ostringstream w;
+    // cout << r.str();
+    voting_solve(r, w);
+    // cout << w.str();
+    ASSERT_EQ( "John Doe\n", w.str());
     // ASSERT_EQ(-1, p.second);
 }
 
