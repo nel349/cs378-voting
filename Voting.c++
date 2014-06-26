@@ -190,7 +190,8 @@ void Election::addBallots(deque<Vote> list){
 
 void Election::state(){
     for(int i = 0; i < (int) candidates.size(); ++i)
-        cout << candidates[i].name << " : " << candidates[i].getNumVotes() << endl;
+        if(candidates[i].valid)
+            cout << candidates[i].name << " : " << candidates[i].getNumVotes() << endl;
 }
 
 bool Election::isTie(){
@@ -243,16 +244,29 @@ int Election::leastVotes(){
 bool Election::distributeBallots(deque<Vote> list){
     bool distributed = false;
 
+
+
+    cout << "\tNumber of Ballots to distribute: " <<  list.size() << endl;
     for(int i = 0; i < (int) list.size(); ++i){
+        list[i].printVote();
+    }
+    int numLossers = (int) list.size();
+
+    for(int i = 0; i < numLossers; ++i){
+
         Vote v  = list.front();
         list.pop_front();
-    
+        // v.printVote();
         bool donated = false;
+        
         while(!donated && v.getSize() != 0){
             int nextBestChice = v.removeVote() - 1;
+            cout << "\t\tNext Best Choice: " << nextBestChice << endl;
             if(candidates[nextBestChice].valid){
                 candidates[nextBestChice].addVote(v);
                 donated = true;
+                cout << "\tVoted given to : " << candidates[nextBestChice].name << endl;
+                // state();
             }
         }
     }
@@ -261,45 +275,58 @@ bool Election::distributeBallots(deque<Vote> list){
 }
 
 void Election::runElection(std::ostream& w){
-    int winner = mostVotesIndex();
+    int maxVotesIndex = mostVotesIndex();
     bool tie = isTie();
 
-    bool isNaturalWinner = (candidates[winner].getNumVotes() / (double) totalVotes)  > 0.5;
+    bool isNaturalWinner = (candidates[maxVotesIndex].getNumVotes() / (double) totalVotes)  >= 0.5;
 
     if(isNaturalWinner){
-        w << candidates[winner].name << endl;
+        w << candidates[maxVotesIndex].name << endl;
         return;
     }
+   
+    cout << "Running Election..." << endl;
+    int roundNum = 1;
     
-    while(!isNaturalWinner){
-        int l = leastVotes();
+    while(!isNaturalWinner && !tie){
+        cout << "\nRound of elimination # " << roundNum++ << endl;
+        
+        cout << "Before distribution: " << endl;
+        state();
+        int leastV = leastVotes();
+        cout << "\tLeast Votes: " << leastV << endl;
         deque<int> lossers;
+        
         // distribute votes
         for(int i = 0; i < numCandidates; ++i){
-            if( candidates[i].valid && l == candidates[i].getNumVotes()){
+            if( candidates[i].valid && leastV == candidates[i].getNumVotes()){
                 candidates[i].valid = false;
                 lossers.push_back(i);
             }
         }
 
+        cout << "\tNumber of loser : " << lossers.size() << endl;
         for(int i = 0; i < (int) lossers.size(); ++i)
                 distributeBallots(candidates[lossers[i]].ballots);
 
-        winner = mostVotesIndex();
-        isNaturalWinner = (candidates[winner].getNumVotes() / (double) totalVotes)  > 0.5;
+        cout << "After distribution: " << endl;
+        state();
+
+        maxVotesIndex = mostVotesIndex();
+        isNaturalWinner = (candidates[maxVotesIndex].getNumVotes() / (double) totalVotes)  >= 0.5;
         tie = isTie();
 
-        int winnerVotes = candidates[winner].getNumVotes();
+        int winnerVotes = candidates[maxVotesIndex].getNumVotes();
 
+        if(isNaturalWinner){
+            w << candidates[maxVotesIndex].name ;
+            return;
+        }
         if(tie){
             for(int i = 0; i < numCandidates; ++i){
                 if(candidates[i].valid && winnerVotes == candidates[i].getNumVotes())
                     w << "\n"<< candidates[i].name;
             }
-            return;
-        }
-        if(isNaturalWinner){
-            w << candidates[winner].name ;
             return;
         }
     }    
