@@ -270,14 +270,17 @@ int Election::leastVotes(){
 bool Election::distributeBallots(deque<Vote> list){
     bool distributed = false;
 
+    cout << (int)list.size() << endl;
     for(int i = 0; i < (int) list.size(); ++i){
         Vote v  = list.front();
         list.pop_front();
+        cout << "vote to distributed: ";
         v.printVote();
 
         bool donated = false;
         while(!donated && v.getSize() != 0){
-            int nextBestChice = v.getFrontElement() -1;
+            cout << "NEver ending loop>>>>>>>>" << endl;
+            int nextBestChice = v.removeVote() - 1;
             if(candidates[nextBestChice].valid){
                 candidates[nextBestChice].addVote(v);
                 donated = true;
@@ -306,24 +309,34 @@ void Election::runElection(std::ostream& w){
     
     cout << "Running election..." << endl;
     while(!isNaturalWinner){
-
+        cout << "Checking for winner step: " << endl;
         int l = leastVotes();
+        state();
+
+        deque<int> lossers;
         // distribute votes
         for(int i = 0; i < numCandidates; ++i){
             if( candidates[i].valid && l == candidates[i].getNumVotes()){
                 candidates[i].valid = false;
-                distributeBallots(candidates[i].ballots);
+                lossers.push_back(i);
             }
         }
+
+        for(int i = 0; i < (int) lossers.size(); ++i)
+                distributeBallots(candidates[lossers[i]].ballots);
 
         winner = mostVotesIndex();
         isNaturalWinner = (candidates[winner].getNumVotes() / (double) totalVotes)  > 0.5;
         tie = isTie();
 
+        int winnerVotes = candidates[winner].getNumVotes();
+
         if(tie){
-            for(int i = 0; i < numCandidates; ++i)
-                if(candidates[i].valid && winner == candidates[i].getNumVotes())
+            for(int i = 0; i < numCandidates; ++i){
+                if(candidates[i].valid && winnerVotes == candidates[i].getNumVotes())
                     w << candidates[i].name << " ";
+            }
+            return;
         }
         if(isNaturalWinner){
             w << candidates[winner].name << endl;
