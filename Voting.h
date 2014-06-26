@@ -49,6 +49,7 @@ class Candidate{
 		deque<Vote> ballots;
 		string name;
 		int numVotes;
+		bool valid;
 		Candidate(string);
 		int getNumVotes();
 		void addVote(Vote);
@@ -60,16 +61,24 @@ class Election{
 	public:
 		int numCandidates;
 		deque<Candidate> candidates;
+		int totalVotes;
 		Election(deque<string>);
 		void printCandidates();
 		void addBallots(deque<Vote>);
 		void state();
+		void runElection(std::ostream&);
+		bool isTie();
+		int mostVotesIndex();
+
+		int leastVotes();
+		bool distributeBallots(deque<Vote>);
 
 };
 
 deque<Vote> read_votes(std::istream&);
 
 deque<string> read_candidates(std::istream&);
+
 
 
 #endif // Voting_h
