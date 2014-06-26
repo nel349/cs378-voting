@@ -10,6 +10,11 @@
 #include <sstream>
 #include <vector>
 
+#ifdef ONLINE_JUDGE
+    #define NDEBUG
+#endif
+
+
 
 
 using namespace std;
@@ -36,10 +41,10 @@ class Vote {
 
 		Vote(string);
 		Vote(const Vote&);
-		Vote& operator = (Vote other){
-			votes = other.votes;
-			return *this;
-		};
+		// Vote& operator = (Vote other){
+		// 	votes = other.votes;
+		// 	return *this;
+		// };
 		int removeVote();
 		int getSize();
 		int getFrontElement();
