@@ -1,5 +1,5 @@
 // --------------------------------
-// projects/Voting/TestVoting.c++
+// projects/collatz/TestCollatz.c++
 // Copyright (C) 2014
 // Glenn P. Downing
 // --------------------------------
@@ -41,6 +41,8 @@ To obtain coverage of the test:
 #include <utility>  // make_pair, pair
 
 #include "gtest/gtest.h"
+#include <deque>
+
 
 #include "Voting.h"
 
@@ -49,145 +51,180 @@ To obtain coverage of the test:
 // -----------
 
 // ----
-// read
+// read candidates
 // ----
+// 
+TEST(Voting,  read_candidates_1) {
+    std::istringstream r("3\nJames Franco\nCameron Diaz\nTom Hanks\n");
+    string expected[] ={"James Franco", "Cameron Diaz", "Tom Hanks"};
+    deque<string> p = read_candidates(r);
+    deque<string> q ;
+    q.assign(expected, expected + 3);
+    assert( p == q);   
+}
 
-TEST(Voting, read) {
+TEST(Voting,  read_candidates_2) {
+    std::istringstream r("6\nA\nB\nC\nD\nE\nF\n");
+    string expected[] ={"A", "B", "C", "D", "E", "F"};
+    deque<string> p = read_candidates(r);
+    deque<string> q ;
+    q.assign(expected, expected + 6);
+    assert( p == q);   
+}
 
-    ASSERT_EQ( 1, 1);
+TEST(Voting,  read_candidates_3) {
+    std::istringstream r("10\nA\nB\nC\nD\nE\nF\nG\nH\nI\nJ\n");
+    string expected[] ={"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
+    deque<string> p = read_candidates(r);
+    deque<string> q ;
+    q.assign(expected, expected + 10);
+    assert( p == q);    
 }
 
 
 // ----
-// eval
+// read votes
 // ----
+// 
 
-TEST(Voting, eval_1) {
-    ASSERT_EQ(20, 20);}
+TEST(Voting,  read_votes) {
+    std::istringstream r("1 2 3\n4 5 6\n7 8 9\n");
+    cout << r.str();
+    Vote expected[] ={Vote("1 2 3"), Vote("4 5 6"), Vote("7 8 9")};
+    // deque<Vote> p = read_votes(r);
+    // deque<Vote> q ;
+    // q.assign(expected, expected + 3);
+    // assert( p == q);   
+}
 
+// ----
+// voting_print
+// ----
+// 
 
+TEST(Voting,  voting_print) {
+    // std::istringstream r("100 -1\n");
+    // const std::pair<int, int> p = Voting_read(r);
+    // ASSERT_EQ( 100, p.first);
+    // ASSERT_EQ(-1, p.second);
+}
 
-// -----
-// print
-// -----
+// ----
+// voting_solve
+// ----
+// 
 
-TEST(Voting, print) {
-    ASSERT_EQ(20, 20);}
-
-// -----
-// solve
-// -----
-
-TEST(Voting, solve) {
-    ASSERT_EQ(20, 20);}
-
-
-/*
-% g++-4.7 -fprofile-arcs -ftest-coverage -pedantic -std=c++11 -Wall Voting.c++ TestVoting.c++ -o TestVoting -lgtest -lgtest_main -lpthread
-
-
-
-% valgrind TestVoting
-==17162== Memcheck, a memory error detector
-==17162== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
-==17162== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
-==17162== Command: TestVoting
-==17162==
-Running main() from gtest_main.cc
-[==========] Running 7 tests from 1 test case.
-[----------] Global test environment set-up.
-[----------] 7 tests from Voting
-[ RUN      ] Voting.read
-[       OK ] Voting.read (30 ms)
-[ RUN      ] Voting.eval_1
-TestVoting.c++:67: Failure
-Value of: v
-  Actual: 1
-Expected: 20
-[  FAILED  ] Voting.eval_1 (57 ms)
-[ RUN      ] Voting.eval_2
-TestVoting.c++:71: Failure
-Value of: v
-  Actual: 1
-Expected: 125
-[  FAILED  ] Voting.eval_2 (6 ms)
-[ RUN      ] Voting.eval_3
-TestVoting.c++:75: Failure
-Value of: v
-  Actual: 1
-Expected: 89
-[  FAILED  ] Voting.eval_3 (5 ms)
-[ RUN      ] Voting.eval_4
-TestVoting.c++:79: Failure
-Value of: v
-  Actual: 1
-Expected: 174
-[  FAILED  ] Voting.eval_4 (5 ms)
-[ RUN      ] Voting.print
-[       OK ] Voting.print (12 ms)
-[ RUN      ] Voting.solve
-TestVoting.c++:98: Failure
-Value of: w.str()
-  Actual: "1 10 1\n100 200 1\n201 210 1\n900 1000 1\n"
-Expected: "1 10 20\n100 200 125\n201 210 89\n900 1000 174\n"
-Which is: "1 10 20
-100 200 125
-201 210 89
-900 1000 174
-"
-[  FAILED  ] Voting.solve (22 ms)
-[----------] 7 tests from Voting (157 ms total)
-
-[----------] Global test environment tear-down
-[==========] 7 tests from 1 test case ran. (201 ms total)
-[  PASSED  ] 2 tests.
-[  FAILED  ] 5 tests, listed below:
-[  FAILED  ] Voting.eval_1
-[  FAILED  ] Voting.eval_2
-[  FAILED  ] Voting.eval_3
-[  FAILED  ] Voting.eval_4
-[  FAILED  ] Voting.solve
-
- 5 FAILED TESTS
-==17162==
-==17162== HEAP SUMMARY:
-==17162==     in use at exit: 0 bytes in 0 blocks
-==17162==   total heap usage: 746 allocs, 746 frees, 115,424 bytes allocated
-==17162==
-==17162== All heap blocks were freed -- no leaks are possible
-==17162==
-==17162== For counts of detected and suppressed errors, rerun with: -v
-==17162== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
+TEST(Voting,  voting_solve) {
+    // std::istringstream r("100 -1\n");
+    // const std::pair<int, int> p = Voting_read(r);
+    // ASSERT_EQ( 100, p.first);
+    // ASSERT_EQ(-1, p.second);
+}
 
 
 
-% gcov-4.7 -b Voting.c++
-File 'Voting.c++'
-Lines executed:100.00% of 17
-Branches executed:100.00% of 18
-Taken at least once:61.11% of 18
-Calls executed:89.47% of 19
-Creating 'Voting.c++.gcov'
-...
+//****************************************
+// VOTE
+//****************************************
+
+// ----
+// Vote::getSize
+// ----
+// 
+TEST(Voting, getSize){
+
+}
+
+// ----
+// Vote::printVote
+// ----
+// 
+TEST(Voting, printVote){
+
+}
+
+// ----
+// Vote::removeVote
+// ----
+// 
+
+TEST(Voting, removeVote){
+    
+}
 
 
 
-% cat Voting.c++.gcov
-...
+// ----
+// Vote::getFrontElement
+// ----
+// 
+TEST(Voting, getFrontElement){
+    
+}
+
+//****************************************
+// Candidate
+//****************************************
+
+// ----
+// Candidate::addVote
+// ----
+// 
+TEST(Voting, addVote){
+    
+}
+
+// ----
+// Candidate::getNumVotes
+// ----
+// 
+TEST(Voting, getNumVotes){
+    
+}
 
 
 
-% gcov-4.7 -b TestVoting.c++
-File 'TestVoting.c++'
-Lines executed:100.00% of 26
-Branches executed:83.93% of 224
-Taken at least once:41.96% of 224
-Calls executed:67.65% of 204
-Creating 'TestVoting.c++.gcov'
-...
+
+//****************************************
+// Election
+//****************************************
+
+
+TEST(Voting, printCandidates){
+    
+}
+
+TEST(Voting, addBallots){
+    
+}
+
+
+TEST(Voting, state){
+    
+}
+
+
+TEST(Voting, isTie){
+    
+}
+
+
+TEST(Voting, mostVotesIndex){
+    
+}
+
+
+TEST(Voting, leastVotes){
+    
+}
 
 
 
-% cat TestVoting.c++.gcov
-...
-*/
+TEST(Voting, distributeBallots){
+    
+}
+
+
+TEST(Voting, runElection){
+    
+}
