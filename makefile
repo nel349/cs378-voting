@@ -5,7 +5,6 @@ clean:
 	rm -f Voting.log
 	rm -f Voting.zip
 	rm -f RunVoting
-	rm -f RunVoting.out
 	rm -f RunVoting.tmp
 	rm -f TestVoting
 	rm -f TestVoting.out
@@ -44,7 +43,7 @@ readme:
 	echo "Nothing in the read me file" > readme.txt
 
 run:
-	./RunVoting < RunVoting.in
+	./RunVoting < RunVoting.in > RunVoting.out
 
 Debug:
 	g++-4.7 UVaVoting.c++ -g -o UVaVoting
