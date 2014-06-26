@@ -44,7 +44,7 @@ readme:
 	echo "Nothing in the read me file" > readme.txt
 
 run:
-	./RunVoting < RunVoting.in > RunVoting.out
+	./RunVoting < RunVoting.in
 
 Debug:
 	g++-4.7 UVaVoting.c++ -g -o UVaVoting
