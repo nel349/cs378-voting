@@ -38,9 +38,16 @@ class Vote {
 
 	public:
 		deque<int> votes;
+
 		Vote(string);
+		Vote(const Vote&);
+		Vote& operator = (Vote other){
+			votes = other.votes;
+			return *this;
+		};
 		int removeVote();
 		int getSize();
+		int getFrontElement();
 		void printVote();};
 
 class Candidate{

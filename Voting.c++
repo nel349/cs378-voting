@@ -112,7 +112,7 @@ void voting_solve (std::istream& r, std::ostream& w) {
 
         
         cout << "\n";
-        election.state();
+        
 
 
         election.runElection(w);
@@ -144,6 +144,13 @@ Vote::Vote(std::string ballot){
     }
 }
 
+Vote::Vote(const Vote &obj){
+    votes = obj.votes;}
+
+
+int Vote::getSize(){
+    return (int) votes.size();
+}
 void Vote::printVote(){
     for(int i = 0; i < (int) votes.size(); ++i)
         cout << votes[i] << " ";    
@@ -151,6 +158,16 @@ void Vote::printVote(){
 }
 
 int Vote::removeVote(){
+    int v = votes.front();
+    votes.pop_front();
+    return v;
+}
+
+int Vote::getFrontElement(){
+    if((int)votes.size() == 0){
+        return -1;
+    }
+
     int v = votes.front();
     votes.pop_front();
     return v;
@@ -253,19 +270,21 @@ int Election::leastVotes(){
 bool Election::distributeBallots(deque<Vote> list){
     bool distributed = false;
 
-
     for(int i = 0; i < (int) list.size(); ++i){
-        Vote c  = list.front();
+        Vote v  = list.front();
         list.pop_front();
+        v.printVote();
 
         bool donated = false;
-        // while(!donated){
-        //     // int nextBestChice = (c)->votes.front();
-        //     // if(candidates[nextBestChice].valid()){
-        //     //     candidates[nextBestChice];
-        //     //     donated = true;
-        //     // }
-        // }
+        while(!donated && v.getSize() != 0){
+            int nextBestChice = v.getFrontElement() -1;
+            if(candidates[nextBestChice].valid){
+                candidates[nextBestChice].addVote(v);
+                donated = true;
+            }
+        }
+        state();
+        cout << endl;
     }
 
 
@@ -285,7 +304,8 @@ void Election::runElection(std::ostream& w){
         return;
     }
     
-    while(!isNaturalWinner && !tie){
+    cout << "Running election..." << endl;
+    while(!isNaturalWinner){
 
         int l = leastVotes();
         // distribute votes
@@ -296,6 +316,19 @@ void Election::runElection(std::ostream& w){
             }
         }
 
+        winner = mostVotesIndex();
+        isNaturalWinner = (candidates[winner].getNumVotes() / (double) totalVotes)  > 0.5;
+        tie = isTie();
+
+        if(tie){
+            for(int i = 0; i < numCandidates; ++i)
+                if(candidates[i].valid && winner == candidates[i].getNumVotes())
+                    w << candidates[i].name << " ";
+        }
+        if(isNaturalWinner){
+            w << candidates[winner].name << endl;
+            return;
+        }
     }    
 
 }
