@@ -1,0 +1,199 @@
+commit 402fb0e9e03010cf2a751ee6c8e7c11392712280
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Thu Jun 26 18:36:35 2014 -0500
+
+    Acceptance Test
+
+commit 91494adb0b781745dbef83428fdf74781d344229
+Merge: f49aede 38a2d70
+Author: Norman Lopez <nel349@cs.utexas.edu>
+Date:   Thu Jun 26 18:04:42 2014 -0500
+
+    Merge branch 'master' of https://github.com/nel349/cs378-voting
+
+commit 38a2d7079be6ca9a1750b57047a870f043438d55
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Thu Jun 26 18:04:35 2014 -0500
+
+    Documentation
+
+commit f49aede1aaa9b3fa70be69417c3722629100d08d
+Author: Norman Lopez <nel349@cs.utexas.edu>
+Date:   Thu Jun 26 18:04:34 2014 -0500
+
+    update testcase
+
+commit 8ae29ec998ef1deadd9fe5ac041051d14f696eae
+Merge: 7b203f6 60116c5
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Thu Jun 26 17:58:04 2014 -0500
+
+    Merge branch 'master' of github.com:nel349/cs378-voting
+    
+    * 'master' of github.com:nel349/cs378-voting:
+      added testcase solve#17
+
+commit 7b203f62da4e1a9829769b6f2c9ba30899a72c52
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Thu Jun 26 17:57:53 2014 -0500
+
+    Documentation
+
+commit 60116c50b1c73099ceb2209e3aea47f79e26a012
+Merge: a14dc65 b88e845
+Author: Norman Lopez <nel349@cs.utexas.edu>
+Date:   Thu Jun 26 16:56:39 2014 -0500
+
+    Merge branch 'master' of https://github.com/nel349/cs378-voting
+
+commit a14dc65b63035985ed8938248ae014c4f80f6b96
+Author: Norman Lopez <nel349@cs.utexas.edu>
+Date:   Thu Jun 26 16:56:12 2014 -0500
+
+    added testcase solve#17
+
+commit b88e84536bae5f8ae771ee3b18658de6e53c54dc
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Thu Jun 26 16:25:36 2014 -0500
+
+    Accepted by UVa :D I am happy
+
+commit 0ddc7fdbef5e3b90fb3816f0a95dc01305cfbdcd
+Merge: 7925533 a1deb84
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Thu Jun 26 16:12:01 2014 -0500
+
+    mmm
+
+commit 7925533f8889a66f22208ef166f4e5a17140d79d
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Thu Jun 26 16:10:42 2014 -0500
+
+    Kinda finish
+
+commit a1deb8487cc7362f3fe68baeb6e1516a3a50e0b3
+Author: Norman Lopez <nel349@cs.utexas.edu>
+Date:   Thu Jun 26 16:05:27 2014 -0500
+
+    testcase
+
+commit 48be3e50014892cf13072cee4c3559c8561de5df
+Merge: dee6cd1 a11f5df
+Author: Norman Lopez <nel349@cs.utexas.edu>
+Date:   Thu Jun 26 15:05:22 2014 -0500
+
+    Merge branch 'master' of https://github.com/nel349/cs378-voting
+
+commit dee6cd1ba6fd07125315acf74cb9fb0b1a16363c
+Author: Norman Lopez <nel349@cs.utexas.edu>
+Date:   Thu Jun 26 15:04:51 2014 -0500
+
+    added read candidate test cases
+
+commit a11f5df237482651353c91a9fae2c0d523de0597
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Thu Jun 26 14:58:41 2014 -0500
+
+    Need to format output
+
+commit d6a827506b6f88d8cd3b29c68c560b1a32642540
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Thu Jun 26 14:47:04 2014 -0500
+
+    Fixed with print statement
+
+commit 52e88d2721ed34807e31af57b65c2ebfc4a5d2c0
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Thu Jun 26 13:14:30 2014 -0500
+
+    Test Case breaking code
+
+commit 8bb8f9351804d55d0e2ec1ed463dd84aaa56951f
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Wed Jun 25 22:24:04 2014 -0500
+
+    Final still working oin it
+
+commit c05c82ecbe5ee33372b6e60e3c3c5b85da7df1da
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Wed Jun 25 21:44:03 2014 -0500
+
+    UVa solution
+
+commit 48a01756803850cfd45d64bcf3c2e5d5787ff658
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Wed Jun 25 21:37:48 2014 -0500
+
+    Solved Fixed #5-#10
+
+commit 701efdfcfcad83229c65c90b9dc379c95582b802
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Wed Jun 25 21:27:03 2014 -0500
+
+    Looks like it works. Fixed #4
+
+commit 83c1e49a1dd8967ab228ef50e61adc1add7cb2da
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Wed Jun 25 20:59:01 2014 -0500
+
+    CACHE
+
+commit 7886cf3c7a82263a1387dc5ee77cc7dd10ab514c
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Wed Jun 25 20:04:48 2014 -0500
+
+    NO CACHE solution. Fixed #1. Fixed #2. Fixed #3
+
+commit 2e66d592804c5f9727b6d697a80254b6b46eed6b
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Wed Jun 25 16:26:56 2014 -0500
+
+    Set up vote, candidate, election classes, need run election
+
+commit f334905eec8694bbb5a79d3ad65e790777bc27e5
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Wed Jun 25 12:46:44 2014 -0500
+
+    Count votes
+
+commit d79d480f91cd4ef12de5c74183fcdd583944325d
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Tue Jun 24 22:50:02 2014 -0500
+
+    Setting up the votes. Currently messing up when counting votes
+
+commit 6807900cc311d3f52b0801621c4a1ab84d4f5ea0
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Tue Jun 24 22:11:00 2014 -0500
+
+    Read votes and made a Vote class
+
+commit 6b8284fa804af034ced0693683f7c07b87bc1f59
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Mon Jun 23 21:56:16 2014 -0500
+
+    Set up reading kinda
+
+commit 1e107d7ca3ef3cccaee75a29959e5af6f6867868
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Mon Jun 23 11:53:40 2014 -0500
+
+    Made a make file
+
+commit b14a899a934593e69833e336328afd0317dd85b3
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Mon Jun 23 11:23:31 2014 -0500
+
+    Input test case added
+
+commit e0ceb4da4f85d35b2d2436560080d6d80709da6a
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Mon Jun 23 11:21:34 2014 -0500
+
+    Shell Code for Assignment 2
+
+commit 084be12e68196435481a844cb8fca153bcac25fb
+Author: Cristhian Escobar <cristhianescobar@users.noreply.github.com>
+Date:   Mon Jun 23 10:58:18 2014 -0500
+
+    Create README.md
