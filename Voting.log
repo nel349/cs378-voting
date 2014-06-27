@@ -1,3 +1,28 @@
+commit c45ea5c18ba8240c1ea192ed429915a12eba1fc1
+Merge: 952f58f d271803
+Author: Norman Lopez <nel349@cs.utexas.edu>
+Date:   Thu Jun 26 20:30:11 2014 -0500
+
+    Merge branch 'master' of https://github.com/nel349/cs378-voting
+
+commit 952f58fec5a7d182083481305382ffec2d66803c
+Author: Norman Lopez <nel349@cs.utexas.edu>
+Date:   Thu Jun 26 20:25:52 2014 -0500
+
+    Finish testing
+
+commit d2718037581bb18d1b21db3a833801e2e74b23e7
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Thu Jun 26 18:48:39 2014 -0500
+
+    RunVoting.out added
+
+commit 0b904717b4e0c2fdfb9afb3e3b72d1584bff26ac
+Author: Cristhian Escobar <cje466@cs.utexas.edu>
+Date:   Thu Jun 26 18:45:48 2014 -0500
+
+    Added git log. Fixed #14
+
 commit 402fb0e9e03010cf2a751ee6c8e7c11392712280
 Author: Cristhian Escobar <cje466@cs.utexas.edu>
 Date:   Thu Jun 26 18:36:35 2014 -0500
