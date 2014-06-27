@@ -1,0 +1,83 @@
+Running main() from gtest_main.cc
+[==========] Running 37 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 37 tests from Voting
+[ RUN      ] Voting.read_candidates_1
+[       OK ] Voting.read_candidates_1 (0 ms)
+[ RUN      ] Voting.read_candidates_2
+[       OK ] Voting.read_candidates_2 (0 ms)
+[ RUN      ] Voting.read_candidates_3
+[       OK ] Voting.read_candidates_3 (0 ms)
+[ RUN      ] Voting.read_votes
+[       OK ] Voting.read_votes (0 ms)
+[ RUN      ] Voting.voting_solve_1
+[       OK ] Voting.voting_solve_1 (1 ms)
+[ RUN      ] Voting.voting_solve_2
+[       OK ] Voting.voting_solve_2 (0 ms)
+[ RUN      ] Voting.voting_solve_3
+[       OK ] Voting.voting_solve_3 (0 ms)
+[ RUN      ] Voting.getSize_1
+[       OK ] Voting.getSize_1 (0 ms)
+[ RUN      ] Voting.getSize_2
+[       OK ] Voting.getSize_2 (0 ms)
+[ RUN      ] Voting.printVote_1
+[       OK ] Voting.printVote_1 (0 ms)
+[ RUN      ] Voting.printVote_2
+[       OK ] Voting.printVote_2 (0 ms)
+[ RUN      ] Voting.printVote_3
+[       OK ] Voting.printVote_3 (0 ms)
+[ RUN      ] Voting.removeVote
+[       OK ] Voting.removeVote (0 ms)
+[ RUN      ] Voting.getFrontElement
+[       OK ] Voting.getFrontElement (0 ms)
+[ RUN      ] Voting.addVote_1
+[       OK ] Voting.addVote_1 (0 ms)
+[ RUN      ] Voting.addVote_2
+[       OK ] Voting.addVote_2 (0 ms)
+[ RUN      ] Voting.addVote_3
+[       OK ] Voting.addVote_3 (0 ms)
+[ RUN      ] Voting.getNumVotes_1
+[       OK ] Voting.getNumVotes_1 (0 ms)
+[ RUN      ] Voting.getNumVotes_2
+[       OK ] Voting.getNumVotes_2 (1 ms)
+[ RUN      ] Voting.getNumVotes_3
+[       OK ] Voting.getNumVotes_3 (0 ms)
+[ RUN      ] Voting.addBallots_1
+[       OK ] Voting.addBallots_1 (0 ms)
+[ RUN      ] Voting.addBallots_2
+[       OK ] Voting.addBallots_2 (0 ms)
+[ RUN      ] Voting.addBallots_3
+[       OK ] Voting.addBallots_3 (0 ms)
+[ RUN      ] Voting.state
+[       OK ] Voting.state (0 ms)
+[ RUN      ] Voting.isTie_1
+[       OK ] Voting.isTie_1 (0 ms)
+[ RUN      ] Voting.isTie_2
+[       OK ] Voting.isTie_2 (0 ms)
+[ RUN      ] Voting.isTie_3
+[       OK ] Voting.isTie_3 (0 ms)
+[ RUN      ] Voting.mostVotesIndex_1
+[       OK ] Voting.mostVotesIndex_1 (0 ms)
+[ RUN      ] Voting.mostVotesIndex_2
+[       OK ] Voting.mostVotesIndex_2 (0 ms)
+[ RUN      ] Voting.mostVotesIndex_3
+[       OK ] Voting.mostVotesIndex_3 (0 ms)
+[ RUN      ] Voting.leastVotes_1
+[       OK ] Voting.leastVotes_1 (0 ms)
+[ RUN      ] Voting.leastVotes_2
+[       OK ] Voting.leastVotes_2 (0 ms)
+[ RUN      ] Voting.leastVotes_3
+[       OK ] Voting.leastVotes_3 (0 ms)
+[ RUN      ] Voting.distributeBallots_1
+[       OK ] Voting.distributeBallots_1 (0 ms)
+[ RUN      ] Voting.distributeBallots_2
+[       OK ] Voting.distributeBallots_2 (0 ms)
+[ RUN      ] Voting.distributeBallots_3
+[       OK ] Voting.distributeBallots_3 (0 ms)
+[ RUN      ] Voting.runElection_1
+[       OK ] Voting.runElection_1 (0 ms)
+[----------] 37 tests from Voting (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 37 tests from 1 test case ran. (3 ms total)
+[  PASSED  ] 37 tests.

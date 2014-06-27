@@ -116,10 +116,16 @@ Vote::Vote(const Vote &obj){
 int Vote::getSize(){
     return (int) votes.size();
 }
-void Vote::printVote(){
+string Vote::printVote(){
+    string result = "";
     for(int i = 0; i < (int) votes.size(); ++i)
-        cout << votes[i] << " ";    
-    cout << endl;
+        if(i + 1 == (int) votes.size() ){
+             result += to_string(votes[i]);
+        }
+        else{
+            result += to_string(votes[i]) + " ";
+        }
+    return result;
 }
 
 int Vote::removeVote(){

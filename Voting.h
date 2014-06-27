@@ -70,9 +70,10 @@ class Vote {
 		int getFrontElement();
 		
 		/** 
-        * prints the Vote according to the voter's preferences 
+        * returns string Vote according to the voter's preferences 
         */
-		void printVote();};
+		
+		string printVote();};
 
 // ---------
 // Candidate
